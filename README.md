@@ -25,12 +25,15 @@ solution like Mongo-DB due to the relational nature of task 2. I have
 then considered 3 options. MySQL, PostgreSQL and SQLite.
 
 SQLite is not suitable for reasons stated above, I have chosen to use
-PostgreSQL over MySQL partially as I'm more used to Posetgres, but
+PostgreSQL over MySQL in part because I'm more used to Posetgres, but
 also because it is typically faster where lots of write operations
-are required. In this case it has been suggested to make my solution
-scalable to accept messages from Kafka. With trade data, this would
-suggest that the incoming data would be constant and would need to be
-analysed in real-time, making write time important.
+are required. In this case it has been suggested that it should be
+simple to alter the solution so that it can accept messages from Kafka.
+With trade data, this would suggest that the incoming data would be
+constant and would need to be analysed in real-time, making write time
+important. I have also used docker-compose so that it would be simple
+to extend the application by adding a kafka service within a docker
+container.
 
 I have used docker and docker-compose and so rather than having the
 same postgres version, it is only important that docker and
@@ -48,12 +51,12 @@ The dependency can be installed using pip install -r requirements.txt
 I have used a docker in an attempt to reduce the change of errors
 caused by different machine environments.
 
-I have used docker-compose with the idea that this could be further
-extended by creating a Kafka service in a docker container that speaks
-with the db service. If a Kafka service is introduced, the json
-responses could be parsed in a similar way as the files are currently,
-though it would likely make sense to create a function to handle this
-parsing.
+As hinted to above, I have used docker-compose with the idea that
+this could be further extended by creating a Kafka service in a docker
+container that populates the db via a python service. The json
+responses could be parsed in a similar way to how the files are 
+currently parsed, though it would likely make sense to create a
+function to handle this parsing.
 
 Overview of commands to run for task one if using Linux with Python3,
 Docker and Docker Compose installed:
